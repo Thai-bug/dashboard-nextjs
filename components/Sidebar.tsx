@@ -9,8 +9,8 @@ import {
 } from 'react-icons/gi';
 
 import {
-  MdArrowBackIos
-} from 'react-icons/md'
+  MdArrowBackIos,
+} from 'react-icons/md';
 
 interface IProps {
   children?: ReactNode;
@@ -33,17 +33,19 @@ const Sidebar: React.FC<IProps> = (props) => {
           : 'w-5.5'
         }
         `}>
-        <div className='text-center flex justify-center'>
-          <img src="/img/logo.png" alt="logo" className='w-40' />
+        <div className="text-center flex justify-center">
+          <img src="/img/logo.png" alt="logo" className="w-40" />
         </div>
 
         <div onClick={() => {
           setToggle(prev => !prev);
-        }} className='absolute bottom-0 mb-6 right-10'>
+        }} className="absolute bottom-0 mb-6 right-10">
           <MdArrowBackIos className={`transition-all ease-linear-out duration-150 transform rotate-${toggle ? 180 : 0}`} />
         </div>
 
-        <div className={`${!hidden ? 'hidden' : 'block'} flex justify-center`}>{props.children}</div>
+        <div className={`${!hidden ? 'hidden' : 'block'} flex justify-center`}>
+          {props.children}
+        </div>
       </div>
 
       <div className={`absolute text-3xl top-0 left-0 bg-primary h-screen transition-all ease-linear-out duration-300 lg:hidden block w-18
@@ -52,8 +54,8 @@ const Sidebar: React.FC<IProps> = (props) => {
           : 'w-18'
         }
         `}>
-        <div className='w-full'>
-          <div className='inline-block relative w-full'>
+        <div className="w-full">
+          <div className="inline-block relative w-full">
             <div className={`${hidden ? 'visible' : 'invisible'} absolute top-3 right-0`}
               onClick={() => {
                 setHidden(prev => !prev);
@@ -61,14 +63,15 @@ const Sidebar: React.FC<IProps> = (props) => {
               <AiOutlineClose />
             </div>
 
-            <div className=''>
-              <img src="/img/logo.png" alt="logo" className='w-40 block mx-auto my-auto' />
+            <div className="">
+              <img src="/img/logo.png" alt="logo" className="w-40 block mx-auto my-auto" />
             </div>
           </div>
 
-          <div className={`${!hidden ? 'hidden' : 'block'} flex justify-center`}>{props.children}</div>
+          <div className={`${!hidden ? 'hidden' : 'block'} flex justify-center`}>
+            {props.children}
+          </div>
         </div>
-
 
       </div>
     </div>
