@@ -1,0 +1,18 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-prettier",
+    "tslint-config-airbnb"
+  ],
+  "jsRules": {},
+  "rules": {
+    "trailingComma": false,
+    "import-name": false,
+    "variable-name": false,
+    "function-name": false,
+    "no-unused-expression": false,
+    "no-empty-interface": false
+  },
+  "rulesDirectory": []
+}
