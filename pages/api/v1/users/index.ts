@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { paginationValidation } from 'server/schema-validate/pagination';
+import UserService from 'server/service/class/UserService';
 
 interface IUser {
   fullname: string;
@@ -9,8 +11,20 @@ interface IUser {
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const prisma = new PrismaClient()
-  const user = await prisma.user.findMany();
+  if (req.method?.toLowerCase() === 'post') {
+    const request = req.body;
+    try {
+      const validate = await paginationValidation.validateAsync(request);
+    } catch (e: any) {
+      return res.status(400).json({
+        message: e.message
+      })
+    }
 
-  res.status(200).json(user);
+    const users = await UserService.findMany(request);
+    return res.json({
+      statusCode: 200,
+      result: users
+    })
+  }
 };

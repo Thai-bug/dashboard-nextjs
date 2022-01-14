@@ -5,11 +5,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const id = +req.query.id;
 
   const data = await prisma.user.findFirst({where:{
-    id: id
+    id,
   }});
-  
+
   return res.json({
     result: data,
     statusCode: 200,
   });
-}
+};

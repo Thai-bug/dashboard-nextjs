@@ -9,13 +9,13 @@ datasource db {
 
 model User {
   id        Int      @id @default(autoincrement())
-  fullname  String   @db.VarChar(255)
-  email     String   @db.VarChar
-  password  String   @db.VarChar
-  status    Boolean
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamp(6)
+  fullname  String?   @db.VarChar(255)
+  email     String?   @db.VarChar
+  password  String?   @db.VarChar
+  status    Boolean?
+  createdAt DateTime? @default(now()) @map("created_at") @db.Timestamp(6)
   roleId    Int      @map("role_id")
-  role      Role     @relation(fields: [roleId], references: [id])
+  role      Role?     @relation(fields: [roleId], references: [id])
 
   @@map("user")
 }

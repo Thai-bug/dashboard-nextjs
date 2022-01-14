@@ -17,7 +17,7 @@ const typeOrmConfig: PostgresConnectionOptions = {
   synchronize: true,
   entities: [
     // path.join(__dirname, '/../server/entities/**/', '*.{ts,js}')
-    User
+    User,
   ],
 
   // migrations: [rootDir + '/migration/**/*.{js,ts}'],

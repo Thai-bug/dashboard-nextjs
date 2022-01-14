@@ -1,7 +1,7 @@
-import express, { Request, Response } from "express";
-import next from "next";
+import express, { Request, Response } from 'express';
+import next from 'next';
 
-const dev = process.env.NODE_ENV !== "production";
+const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const port = process.env.PORT || 3000;
@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000;
   try {
     await app.prepare();
     const server = express();
-    server.all("*", async (req: Request, res: Response) => {
+    server.all('*', async (req: Request, res: Response) => {
       return handle(req, res);
     });
     server.listen(port, async (err?: any) => {
