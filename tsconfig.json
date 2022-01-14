@@ -28,6 +28,7 @@
     "strictPropertyInitialization": false,
     "emitDecoratorMetadata": true
   },
+  "emitDecoratorMetadata": true,
   "exclude": [
     "dist",
     ".next",
