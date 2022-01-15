@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs'
+
 import { User } from '@prisma/client';
 import { UserReponsitory } from 'server/repository/class/UserResponsitory';
 import { Service } from 'typedi';
@@ -13,7 +15,12 @@ class UserService implements IUserService {
   }
 
   findMany(request: any): Promise<any> {
-      return this.userRepository.getMany(request);
+    return this.userRepository.getMany(request);
+  }
+
+  async create(request: any): Promise<any> {
+    request.password = await bcrypt.hash(request.password as string, 10);
+    return this.userRepository.create(request);
   }
 }
 

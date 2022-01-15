@@ -21,7 +21,7 @@ export class UserReponsitory implements IUserRepository {
   }
 
   async getMany(request: any): Promise<any> {
-    const user =  await this.prisma.user.findMany({
+    const user = await this.prisma.user.findMany({
       ...request
     })
     const count = await this.prisma.user.count()
@@ -29,5 +29,16 @@ export class UserReponsitory implements IUserRepository {
       data: user,
       count: count
     }
+  }
+
+  async create(request: any): Promise<any> {
+    const user = await this.prisma.user.create({
+      data: {
+        ...request
+      }
+    });
+    console.log(user);
+
+    return user;
   }
 }
