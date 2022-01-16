@@ -1,25 +1,36 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { container } from "server/bind";
 import { validateCreateUser } from "server/schema-validate/user";
-import UserService from "server/service/class/UserService";
+import { IUserService } from "server/service/interface/IUserService";
+import { response } from "utils/handler";
+import { TYPES } from "utils/symbols";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  let userService: IUserService = container.get(TYPES.UserService);
   if (req.method?.toLowerCase() === 'post') {
     let request = req.body;
-    try{
+    try {
       await validateCreateUser.validateAsync(request);
-    } catch(e: any){
+    } catch (e: any) {
       return res.status(400).json({
         message: e.message
       })
     }
 
-    const newUser = await UserService.create(request);
+    const newUser = await userService.create(request);
 
-    return res.status(200).json('created')
+    return response(res, {
+      statusCode: 200,
+      message: 'created',
+      result: newUser
+    })
   }
 
   if (req.method?.toLowerCase() === 'get') {
-    res.status(404);
-    return res.end();
+    return response(res, {
+      statusCode: 400,
+      message: 'error',
+      result: null
+    })
   }
 }

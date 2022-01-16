@@ -1,6 +1,7 @@
 import { PrismaClient, User } from '@prisma/client';
+import { injectable } from 'inversify';
 import { IUserRepository } from '../interface/IUserRepository';
-
+@injectable()
 export class UserReponsitory implements IUserRepository {
   private prisma = new PrismaClient();
   getOne(id: number): Promise<any> {

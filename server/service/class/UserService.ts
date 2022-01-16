@@ -1,14 +1,17 @@
 import bcrypt from 'bcryptjs'
 
 import { User } from '@prisma/client';
-import { UserReponsitory } from 'server/repository/class/UserResponsitory';
-import { Service } from 'typedi';
 import { IUserService } from '../interface/IUserService';
+import { IUserRepository } from 'server/repository/interface/IUserRepository';
+import { inject, injectable } from 'inversify';
+import { TYPES } from 'utils/symbols';
+@injectable()
+export class UserService implements IUserService {
+  private userRepository: IUserRepository;
 
-
-@Service()
-class UserService implements IUserService {
-  private userRepository = new UserReponsitory();
+  constructor(@inject(TYPES.UserRepository) userRepository: IUserRepository){
+    this.userRepository = userRepository;
+  }
 
   getOne(id: number): Promise<User | null> {
     return this.userRepository.getOne(id);
@@ -23,5 +26,3 @@ class UserService implements IUserService {
     return this.userRepository.create(request);
   }
 }
-
-export default new UserService();

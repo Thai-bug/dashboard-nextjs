@@ -1,7 +1,9 @@
-import { PrismaClient } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { paginationValidation } from 'server/schema-validate/pagination';
-import UserService from 'server/service/class/UserService';
+import {container } from 'server/bind';
+import { response } from 'utils/handler';
+import { IUserService } from 'server/service/interface/IUserService';
+import { TYPES } from 'utils/symbols';
 
 interface IUser {
   fullname: string;
@@ -11,6 +13,8 @@ interface IUser {
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  let UserService: IUserService = container.get<IUserService>(TYPES.UserService);
+
   if (req.method?.toLowerCase() === 'post') {
     const request = req.body;
     try {
@@ -22,9 +26,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const users = await UserService.findMany(request);
-    return res.json({
+    return response(res, {
       statusCode: 200,
-      result: users
-    })
+      result: users,
+    });
   }
+
+  return response(res,{
+    statusCode:400,
+    result: null
+  })
 };
