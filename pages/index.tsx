@@ -1,20 +1,19 @@
-import MenuItem from '../components/MenuItem';
-import Sidebar from '../components/Sidebar';
+import { useState } from "react";
+import Navbar from "../components/navbar";
+import NavIcon from "../components/navbar/NavIcon";
+import NavItem from "../components/navbar/NavItem";
 
-export default function Index() {
+import Layout from '../components/layout/Index'
+
+export default function Home() {
+
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <h1 className="h-screen">
-      <Sidebar >
-        <MenuItem>
-        menu item
-        </MenuItem>
-      </Sidebar>
-    </h1>
-  );
-}
-
-export async function getServerSideProps() {
-  return {
-    props: {}, // will be passed to the page component as props
-  };
+      <Layout >
+        <div className="container p-2">
+        hello
+        </div>
+      </Layout>
+  )
 }
