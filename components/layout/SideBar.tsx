@@ -1,16 +1,16 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 
 import NavItem from "../navbar/NavItem";
 import { IBaseProps } from "../../common/interfaces";
 
 interface IProps extends IBaseProps {
-  onClick?: () => any;
+  onClick?: MouseEventHandler | undefined;
   isOpen: boolean;
 }
 
 const SideBar: React.FC<IProps> = (props: IProps) => {
   return <>
-    <main onClick={() => props.onClick()} className={`md:hidden absolute top-0  ${props.isOpen ? 'w-screen opacity-60' : '-z-10'} transition-all duration-1000 h-screen bg-slate-200`}>
+    <main onClick={() => props.onClick()} className={`md:hidden absolute top-0  ${props.isOpen ? 'w-screen opacity-60' : '-z-10 opacity-0'} transition-all duration-1000 h-screen bg-slate-200`}>
 
     </main>
     <section className={`p-4 border absolute top-0  h-screen w-48 bg-gray-200 transition-all shadow-2xl  duration-500  ${props.isOpen ? 'left-0' : '-left-52'}`}>

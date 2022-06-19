@@ -8,18 +8,18 @@ interface IProps extends IBaseProps {
 }
 
 const IndexLayout: React.FC<IProps> = (props) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpenSideBar, setIsOpenSideBar] = React.useState(false);
 
   return <>
     <div className="relative">
-      <HeaderLayout isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}>
+      <HeaderLayout isOpen={isOpenSideBar} onClick={() => setIsOpenSideBar(!isOpenSideBar)}>
 
       </HeaderLayout>
       <div className="p">{
         props.children
       }
       </div>
-      <SideBar isOpen={isOpen} onClick={() => setIsOpen(!isOpen)}></SideBar>
+      <SideBar isOpen={isOpenSideBar} onClick={() => setIsOpenSideBar(!isOpenSideBar)}></SideBar>
     </div>
   </>
 }

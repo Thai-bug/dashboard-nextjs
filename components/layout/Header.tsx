@@ -1,8 +1,8 @@
+import Link from "next/link";
 import React from "react";
 import { IBaseProps } from "../../common/interfaces";
 import Navbar from "../navbar";
-import NavItem from "../navbar/NavItem";
-
+import NavItem from '../navbar/NavItem'
 interface IProps extends IBaseProps {
   isOpen?: boolean;
   onClick?: () => any;
@@ -31,10 +31,19 @@ const HeaderLayout: React.FC<IProps> = (props: IProps) => {
           <div>hello</div>
         </NavItem>
         <NavItem className='rounded-sm p-5 text-center hover:bg-red-200 transition-all ease-linear duration-100 col-end-12'>
-          <div>Tài khoản</div>
+          <Link href={{
+            pathname: '/profile'
+          }}>
+            <a>Tài khoản</a>
+          </Link>
+          
         </NavItem>
         <NavItem className='rounded-sm p-5 text-center hover:bg-red-200 transition-all ease-linear duration-100 col-end-13'>
-          <div>Đăng nhập</div>
+          <Link href={{
+            pathname: '/login',
+          }} >
+            <a>Đăng nhập</a>
+          </Link>
         </NavItem>
       </Navbar>
     </div></>
