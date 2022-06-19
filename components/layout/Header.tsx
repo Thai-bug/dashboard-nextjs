@@ -9,12 +9,9 @@ interface IProps extends IBaseProps {
 }
 
 const HeaderLayout: React.FC<IProps> = (props: IProps) => {
-  console.log(props.onClick)
   return <>
     <div className="md:container md:mx-auto">
-      <Navbar style={{
-        minHeight: 10
-      }}
+      <Navbar
         className='grid grid-cols-9 gap-1 text-white bg-slate-800 p-2 shadow-lg shadow-gray-500'
       >
         <div className="flex md:hidden col-span-2 items-center justify-center">
@@ -27,12 +24,20 @@ const HeaderLayout: React.FC<IProps> = (props: IProps) => {
 
         </div>
 
-        <NavItem text={'Hello'} className='hidden md:block rounded-sm p-5 text-center hover:bg-red-200 transition-all ease-linear duration-100' />
-        <NavItem text={'Hello'} className='hidden md:block rounded-sm p-5 text-center hover:bg-red-200 transition-all ease-linear duration-100' />
-        <NavItem text={'Tài khoản'} className='rounded-sm p-5 text-center hover:bg-red-200 transition-all ease-linear duration-100 col-end-12' />
-        <NavItem text={'Đăng nhập'} className='rounded-sm p-5 text-center hover:bg-red-200 transition-all ease-linear duration-100 col-end-13' />
+        <NavItem className='hidden md:block rounded-sm p-5 text-center hover:bg-red-200 transition-all ease-linear duration-100' >
+          <div>hello</div>
+        </NavItem>
+        <NavItem className='hidden md:block rounded-sm p-5 text-center hover:bg-red-200 transition-all ease-linear duration-100'>
+          <div>hello</div>
+        </NavItem>
+        <NavItem className='rounded-sm p-5 text-center hover:bg-red-200 transition-all ease-linear duration-100 col-end-12'>
+          <div>Tài khoản</div>
+        </NavItem>
+        <NavItem className='rounded-sm p-5 text-center hover:bg-red-200 transition-all ease-linear duration-100 col-end-13'>
+          <div>Đăng nhập</div>
+        </NavItem>
       </Navbar>
     </div></>
-} 
+}
 
 export default React.memo(HeaderLayout);
