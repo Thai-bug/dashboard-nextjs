@@ -1,4 +1,6 @@
 import React from "react";
+
+import NavItem from "../navbar/NavItem";
 import { IBaseProps } from "../../common/interfaces";
 
 interface IProps extends IBaseProps {
@@ -21,8 +23,12 @@ const SideBar: React.FC<IProps> = (props: IProps) => {
           </button>
         </div>
       </div>
-      <NavItem text={'Hello'} className=' block rounded-sm p-2 hover:bg-red-200 transition-all ease-linear duration-100' />
-      <NavItem text={'Hello'} className=' block rounded-sm p-2 hover:bg-red-200 transition-all ease-linear duration-100' />
+      <NavItem className=' block rounded-sm p-2 hover:bg-red-200 transition-all ease-linear duration-100'>
+        <div>hello</div>
+      </NavItem>
+      <NavItem className=' block rounded-sm p-2 hover:bg-red-200 transition-all ease-linear duration-100'>
+        <div>hello</div>
+      </NavItem>
 
     </section></>
 }
